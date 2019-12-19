@@ -8,7 +8,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,
-      useUnifiedTopology: false
+      useUnifiedTopology: true
     });
     console.log("Mongo DB connected");
   } catch (err) {
