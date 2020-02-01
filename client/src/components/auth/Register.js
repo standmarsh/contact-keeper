@@ -1,10 +1,14 @@
 import React, { useState, useContext } from "react";
 import AlertContext from "../../context/alert/alertContext";
+import AuthContext from "../../context/auth/authContext";
 
 export const Register = () => {
   const alertContext = useContext(AlertContext);
-
+  const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;
+
+  const { register } = authContext;
+
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -23,7 +27,11 @@ export const Register = () => {
     } else if (password !== password2) {
       setAlert("Passwords do not match", "danger");
     } else {
-      console.log("Register Submit");
+      register({
+        name,
+        email,
+        password
+      });
     }
   };
   return (
@@ -52,9 +60,9 @@ export const Register = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password2">Password Confirmation</label>
+          <label htmlFor="password2">Password Confirm</label>
           <input
-            type="password2"
+            type="password"
             name="password2"
             value={password2}
             onChange={onChange}
